@@ -35,11 +35,11 @@ const login = (req, res) => {
       'content-type': 'application/json'
     },
     data: {
-      grant_type: 'password',      
-      connection: 'Username-Password-Authentication',
+      grant_type: 'client_credentials',      
       username: username,
       password: password,
-      audience: process.env.AUTH0_DOMAIN,
+      audience: process.env.AUTH0_IDENTITY,
+      connection: 'Username-Password-Authentication',
       client_id: process.env.AUTH0_CLIENT_ID,
       client_secret: process.env.AUTH0_CLIENT_SECRET
     }
@@ -51,7 +51,7 @@ const login = (req, res) => {
     })
   })
   .catch(e => {
-    res.send(e)
+    console.log(e)
   })
 
   // let sql = "SELECT * FROM usersCredentials WHERE username = ?"
